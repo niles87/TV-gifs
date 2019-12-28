@@ -18,7 +18,7 @@ function createButtons() {
   $("#added-tvshows").empty();
   for (var i = 0; i < tvShows.length; i++) {
     var buttons = `
-        <button class="tvshow-btn" data-name="${tvShows[i]}">
+        <button class="mx-1 mt-2" id="tvshow-btn" data-name="${tvShows[i]}">
         ${tvShows[i]}
         </button>
         `;
@@ -40,16 +40,29 @@ function displayGIFs() {
     for (var a = 0; a < response.data.length; a++) {
       var gifDiv = `
                   <div class="tvshow">
-                  <img src="${response.data[a].images.original_still.url}">
+                  
+                  <video class="gif" loop="loop">
+                  <source src="${response.data[a].images.fixed_height.mp4}" type="video/mp4">
+                  Your browser does not support this GIF.
+                  </video>
+                  <p>Rating: ${response.data[a].rating}</p>
+                  
                   </div>
-                
-                
                 `;
       $("#gif-view").prepend(gifDiv);
     }
   });
 }
+function playPauseGif() {
+  var gif = $(this).get(0);
+  if (gif.paused) {
+    gif.play();
+  } else {
+    gif.pause();
+  }
+}
 
-$(document).on("click", ".tvshow-btn", displayGIFs);
+$(document).on("click", "#tvshow-btn", displayGIFs);
+$(document).on("click", ".gif", playPauseGif);
 
 createButtons();
