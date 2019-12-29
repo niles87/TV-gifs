@@ -31,21 +31,22 @@ function displayGIFs() {
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?api_key=XL0cvri4mdJxFaANOrpJHxQ6v0hiBPkp&q=" +
     show +
-    "&limit=10&offset=0&rating=&lang=en";
+    "&limit=100&offset=0&rating=&lang=en";
 
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function(response) {
-    for (var a = 0; a < response.data.length; a++) {
+    for (var a = 0; a < 10; a++) {
+      var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
                   <div class="tvshow">
                   
                   <video class="gif" loop="loop">
-                  <source src="${response.data[a].images.fixed_height.mp4}" type="video/mp4">
+                  <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
                   Your browser does not support this GIF.
                   </video>
-                  <p>Rating: ${response.data[a].rating}</p>
+                  <p>Rating: ${response.data[randomGIF].rating}</p>
                   
                   </div>
                 `;
