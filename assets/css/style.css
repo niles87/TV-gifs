@@ -1,4 +1,13 @@
+body {
+  background-image: url(../images/Poweredby_100px-White_VertText.png);
+  background-position: 98% 2%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .tvshow {
   float: left;
   margin: 10px 10px 0 10px;
+}
+#giphy {
+  margin-right: 5%;
 }
