@@ -1,10 +1,11 @@
-var tvShows = ["the office", "30 rock", "american horror story"];
+var tvShows = ["the office", "30 rock", "american horror story", "game of thrones"];
 
 $("#add-show").on("click", function(event) {
   event.preventDefault();
 
   var show = $("#gif-submit")
     .val()
+    .toLowerCase()
     .trim();
 
   tvShows.push(show);
@@ -41,13 +42,12 @@ function displayGIFs() {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
                   <div class="tvshow">
-                  
                   <video class="gif" loop="loop">
                   <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
                   Your browser does not support this GIF.
                   </video>
                   <p>Rating: ${response.data[randomGIF].rating}</p>
-                  
+                  <p>Title: ${response.data[randomGIF].title}</p>
                   </div>
                 `;
       $("#gif-view").prepend(gifDiv);
@@ -63,7 +63,13 @@ function playPauseGif() {
   }
 }
 
+// function addToFavorites() {
+//   console.log($(this).attr("form"));
+//   $("#favorites").append($(".gif").clone());
+// }
+
 $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", ".gif", playPauseGif);
+// $(document).on("click", ".add-to-favorites", addToFavorites);
 
 createButtons();
