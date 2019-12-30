@@ -10,8 +10,6 @@ $("#add-show").on("click", function(event) {
 
   tvShows.push(show);
 
-  console.log(tvShows);
-
   createButtons();
 });
 
@@ -27,6 +25,7 @@ function createButtons() {
     $("#added-tvshows").append(buttons);
   }
 }
+
 function displayGIFs() {
   var show = $(this).attr("data-name");
   var queryURL =
@@ -46,6 +45,7 @@ function displayGIFs() {
                   <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
                   Your browser does not support this GIF.
                   </video>
+                  <p>Right click to add to favorites</p>
                   <p>Rating: ${response.data[randomGIF].rating}</p>
                   <p>Title: ${response.data[randomGIF].title}</p>
                   </div>
@@ -63,13 +63,16 @@ function playPauseGif() {
   }
 }
 
-// function addToFavorites() {
-//   console.log($(this).attr("form"));
-//   $("#favorites").append($(".gif").clone());
-// }
+function addToFavorites() {
+  $("#favorites").show();
+  $("#favorites").append($(this).clone());
+}
 
 $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", ".gif", playPauseGif);
-// $(document).on("click", ".add-to-favorites", addToFavorites);
+$(document).on("contextmenu", ".gif", addToFavorites);
 
+$(document).ready(function() {
+  $("#favorites").hide();
+});
 createButtons();
