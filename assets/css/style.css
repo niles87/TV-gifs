@@ -8,6 +8,7 @@ body {
   float: left;
   margin: 10px 10px 0 10px;
 }
-#giphy {
-  margin-right: 5%;
+#favorites {
+  border: 1px solid #000000;
+  margin-top: 1%;
 }
