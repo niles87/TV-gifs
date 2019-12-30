@@ -3,12 +3,13 @@ body {
   background-position: 98% 2%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color: #4d4d4d;
 }
 .tvshow {
   float: left;
   margin: 10px 10px 0 10px;
 }
 #favorites {
-  border: 1px solid #000000;
+  border: 1px solid #ffffff;
   margin-top: 1%;
 }
