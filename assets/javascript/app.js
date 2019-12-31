@@ -43,6 +43,7 @@ function displayGIFs() {
                   <div class="tvshow">
                   <video class="gif" loop="loop">
                   <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
+                  <img src="${response.data[randomGIF].images.fixed_height.mp4}" class="gif">
                   Your browser does not support this GIF.
                   </video>
                   <p>Right click to add to favorites</p>
