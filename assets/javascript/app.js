@@ -1,6 +1,6 @@
 var tvShows = ["the office", "30 rock", "american horror story", "game of thrones"];
-// var user = prompt("Enter a username please:", "");
-// var newUser = false;
+var user = prompt("Enter a username please:", "");
+var newUser = false;
 
 // Adds user inputed text into tvShows array
 $("#add-show").on("click", function(event) {
@@ -75,58 +75,58 @@ function playPauseGif() {
 function addToFavorites() {
   $("#favorites").show();
   $("#favorites").append($(this).clone());
-  // setCookie(user, "favorites", 30);
+  setCookie("username", user, 30);
 }
 
-// // sets a cookie
-// function setCookie(cn, cv, exd) {
-//   var day = new Date();
-//   day.setTime(day.getTime() + exd * 24 * 60 * 60 * 1000);
-//   var exp = "expires=" + day.toGMTString();
+// sets a cookie
+function setCookie(cn, cv, exd) {
+  var day = new Date();
+  day.setTime(day.getTime() + exd * 24 * 60 * 60 * 1000);
+  var exp = "expires=" + day.toGMTString();
 
-//   document.cookie = cn + "=" + cv + ";" + exp + ";path=/;secure";
-// }
+  document.cookie = cn + "=" + cv + ";" + exp + ";path=/;secure";
+}
 
-// // gets cookie
-// function getCookie(cookieName) {
-//   var cname = cookieName + "=";
-//   var decodeCookie = decodeURIComponent(document.cookie);
-//   var cookieArray = decodeCookie.split(";");
-//   for (var j = 0; j < cookieArray.length; j++) {
-//     var cooki = cookieArray[j];
-//     while (cooki.charAt(0) == " ") {
-//       cooki = cooki.substring(1, cooki.length);
-//     }
-//     if (cooki.indexOf(cname) == 0) {
-//       var cookieSub = cookieArray.substring(cname.length, cooki.length);
-//       return cookieSub;
-//     }
-//   }
-//   return "";
-// }
+// gets cookie
+function getCookie(cookieName) {
+  var cname = cookieName + "=";
+  var decodeCookie = decodeURIComponent(document.cookie);
+  var cookieArray = decodeCookie.split(";");
+  for (var j = 0; j < cookieArray.length; j++) {
+    var cooki = cookieArray[j];
+    while (cooki.charAt(0) == " ") {
+      cooki = cooki.substring(1, cooki.length);
+    }
+    if (cooki.indexOf(cname) == 0) {
+      var cookieSub = cookieArray.substring(cname.length, cooki.length);
+      return cookieSub;
+    }
+  }
+  return "";
+}
 
-// // checks for a cookie
-// function checkCookie() {
-//   var user = getCookie("username");
-//   if (user != "") {
-//     alert("Welcome Back " + user);
-//   } else {
-//     newUser = true;
-//     if (user != "" && user != null) {
-//       setCookie("username", user, 30);
-//     }
-//   }
-// }
+// checks for a cookie
+function checkCookie() {
+  var user = getCookie("username");
+  if (user != "") {
+    alert("Welcome Back " + user);
+  } else {
+    newUser = true;
+    if (user != "" && user != null) {
+      setCookie("username", user, 30);
+    }
+  }
+}
 
 // document functions
 $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", ".gif", addToFavorites);
 $(document).ready(function() {
-  // checkCookie();
-  // if (!newUser) {
-  $("#favorites").hide();
-  // }
+  checkCookie();
+  if (!newUser) {
+    $("#favorites").hide();
+  }
 });
 
 createButtons();
