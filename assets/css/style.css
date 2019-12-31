@@ -4,6 +4,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: #4d4d4d;
+  color: #ffffff;
 }
 .tvshow {
   float: left;
@@ -12,4 +13,11 @@ body {
 #favorites {
   border: 1px solid #ffffff;
   margin-top: 1%;
+}
+
+@media screen and (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
