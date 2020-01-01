@@ -1,6 +1,6 @@
 body {
   background-image: url(../images/Poweredby_100px-White_VertText.png);
-  background-position: top right;
+  background-position: right 89px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: #4d4d4d;
@@ -14,10 +14,28 @@ body {
   border: 1px solid #ffffff;
   margin-top: 1%;
 }
+#nav-bar {
+  background-color: #000000;
+}
+#nav-title {
+  color: #ffffff;
+}
+#omdb {
+  color: #ffffff;
+}
 
 @media screen and (prefers-color-scheme: light) {
   body {
     background-color: #ffffff;
+    color: #000000;
+  }
+  #nav-bar {
+    background-color: #cacaca;
+  }
+  #nav-title {
+    color: #000000;
+  }
+  #omdb {
     color: #000000;
   }
 }
