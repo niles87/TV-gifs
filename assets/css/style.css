@@ -1,8 +1,4 @@
 body {
-  background-image: url(../images/Poweredby_100px-White_VertText.png);
-  background-position: right 89px;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   background-color: #4d4d4d;
   color: #ffffff;
 }
@@ -22,6 +18,11 @@ body {
 }
 #omdb {
   color: #ffffff;
+}
+#giphy {
+  background-color: #000000;
+  position: fixed;
+  right: 0;
 }
 
 @media screen and (prefers-color-scheme: light) {
