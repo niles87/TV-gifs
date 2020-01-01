@@ -1,6 +1,5 @@
 var tvShows = ["the office", "30 rock", "american horror story", "game of thrones"];
 var favorites = [];
-var element = {};
 
 // Adds user inputed text into tvShows array
 $("#add-show").on("click", function(event) {
@@ -75,12 +74,12 @@ function addToFavorites() {
   $("#favorites").show();
   $("#favorites").append($(this).clone());
 
+  // create an object to push to favorites array
+  var element = {};
   element.src = $(this)
-    .find("Source:first")
+    .find("source")
     .attr("src");
   favorites.push(element);
-
-  localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
 // document functions
@@ -88,10 +87,13 @@ $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", ".gif", addToFavorites);
 $(document).ready(function() {
+  // when there is nothing in local storage hide the favorites area
   if (localStorage.getItem("favorites") == null) {
     $("#favorites").hide();
   } else {
+    // if local storage has favorites saved parse the saved string and append the gifs to the favorites area
     favorites = JSON.parse(localStorage.getItem("favorites"));
+
     for (var a = 0; a < favorites.length; a++) {
       var videoTag = `
       <video class="gif" loop="loop">
@@ -102,6 +104,11 @@ $(document).ready(function() {
       $("#favorites").append(videoTag);
     }
   }
+});
+
+// when a user exits the browser save favorites array to local storage for future use
+$(window).on("beforeunload", function() {
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 });
 
 createButtons();
