@@ -1,0 +1,33 @@
+body {
+  /* background-image: url();
+    background-position: right 14%;
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+  background-color: #4d4d4d;
+  color: #ffffff;
+}
+#nav-bar {
+  background-color: #000000;
+}
+#nav-title {
+  color: #ffffff;
+}
+#tv-gifs {
+  color: #ffffff;
+}
+
+@media screen and (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  #nav-bar {
+    background-color: #cacaca;
+  }
+  #nav-title {
+    color: #000000;
+  }
+  #tv-gifs {
+    color: #000000;
+  }
+}
