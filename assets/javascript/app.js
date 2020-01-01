@@ -80,6 +80,8 @@ function addToFavorites() {
     .find("source")
     .attr("src");
   favorites.push(element);
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
 // document functions
@@ -104,11 +106,6 @@ $(document).ready(function() {
       $("#favorites").append(videoTag);
     }
   }
-});
-
-// when a user exits the browser save favorites array to local storage for future use
-$(window).on("beforeunload", function() {
-  localStorage.setItem("favorites", JSON.stringify(favorites));
 });
 
 createButtons();
