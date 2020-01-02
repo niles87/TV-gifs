@@ -1,32 +1,55 @@
+// initial variables
 var tvShows = ["the office", "30 rock", "american horror story", "game of thrones"];
+var movies = ["30 days of night", "constantine", "tron:legacy", "All dogs go to heaven"];
 var favorites = [];
 
 // Adds user inputed text into tvShows array
-$("#add-show").on("click", function(event) {
+$("#add-button").on("click", function(event) {
   event.preventDefault();
 
-  var show = $("#gif-submit")
+  var input = $("#button-input")
     .val()
     .toLowerCase()
     .trim();
-
-  tvShows.push(show);
+  if ($("input[name=gif]:checked").val()) {
+    tvShows.push(input);
+  } else if ($("input[name=movie]:checked").val()) {
+    movies.push(input);
+  }
 
   createButtons();
 });
 
 // creates buttons for elements inside tvShows array
-function createButtons() {
-  $("#added-tvshows").empty();
+function createGIFButtons() {
   for (var i = 0; i < tvShows.length; i++) {
     var buttons = `
-        <button class="mx-1 mt-2" id="tvshow-btn" data-name="${tvShows[i]}">
-        ${tvShows[i]}
-        </button>
-        `;
+    <button class="mx-1 mt-2 bg-info" id="tvshow-btn" data-name="${tvShows[i]}">
+    ${tvShows[i]}
+    </button>
+    `;
 
-    $("#added-tvshows").append(buttons);
+    $("#added-buttons").append(buttons);
   }
+}
+// creates buttons for elements inside movies array
+function createMovieButtons() {
+  for (var i = 0; i < movies.length; i++) {
+    var buttons = `
+    <button class="mx-1 mt-2 bg-danger" id="movie-btn" data-name="${movies[i]}">
+    ${movies[i]}
+    </button>
+    `;
+
+    $("#added-buttons").append(buttons);
+  }
+}
+
+// empties out the added buttons and renders new ones of both gifs and movies
+function createButtons() {
+  $("#added-buttons").empty();
+  createGIFButtons();
+  createMovieButtons();
 }
 
 // API call to giphy using pressed button then adds it to the HTML document
@@ -44,7 +67,7 @@ function displayGIFs() {
     for (var q = 0; q < 10; q++) {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
-                  <div class="tvshow">
+                  <div class="col">
                   <video class="gif" loop="loop">
                   <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
                   Your browser does not support this GIF.
@@ -54,8 +77,30 @@ function displayGIFs() {
                   <p>Title: ${response.data[randomGIF].title}</p>
                   </div>
                 `;
-      $("#gif-view").prepend(gifDiv);
+      $("#output-view").prepend(gifDiv);
     }
+  });
+}
+
+// API call to OMDB using pressed button then adds it to the HTML document
+function displayMovieInfo() {
+  var movie = $(this).attr("data-name");
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=db4dc94c";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function(response) {
+    var movieDiv = `
+                    <div class="col">
+                    <img src="${response.Poster}" class="mb-1">
+                    <h2>${response.Title}</h2>
+                    <p>Rating: ${response.Rated}</p>
+                    <p>Released: ${response.Released}</p>
+                    <p>${response.Plot}</p>
+                    </div>
+                  `;
+    $("#output-view").prepend(movieDiv);
   });
 }
 
@@ -86,6 +131,7 @@ function addToFavorites() {
 
 // document functions
 $(document).on("click", "#tvshow-btn", displayGIFs);
+$(document).on("click", "#movie-btn", displayMovieInfo);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", ".gif", addToFavorites);
 $(document).ready(function() {
@@ -108,4 +154,5 @@ $(document).ready(function() {
   }
 });
 
+// adds initial buttons to HTML document
 createButtons();
