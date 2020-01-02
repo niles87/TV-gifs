@@ -23,11 +23,6 @@
     <nav class="navbar navbar-expand-lg navbar-light" id="nav-bar">
       <span class="navbar-brand mb-0 h1" id="nav-title">TV Show GIF Search</span>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="movie_search.html" id="omdb">OMDB</a>
-          </li>
-        </ul>
         <img
           src="assets/images/Poweredby_100px-Black_VertLogo.png"
           alt="powered by giphy"
@@ -38,15 +33,19 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div id="added-tvshows"></div>
+          <p>Blue buttons are for GIFs. Red buttons are for Movies.</p>
+          <div id="added-buttons"></div>
         </div>
         <div class="col">
+          <p>Please check one box at a time</p>
           <form>
             <div class="form-group">
-              <label for="gif-submit">TV Show</label>
-              <input type="text" class="form-control" id="gif-submit" />
+              <input type="checkbox" name="gif" id="gif-choice" /> TV GIFs
+              <br />
+              <input type="checkbox" name="movie" id="movie-choice" /> Movie Info
+              <input type="text" class="form-control" id="button-input" />
             </div>
-            <button type="submit" class="btn btn-primary" id="add-show">Add it</button>
+            <button type="submit" class="btn btn-primary" id="add-button">Add it</button>
           </form>
         </div>
       </div>
@@ -56,9 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="row no-gutters">
-      <div class="col" id="gif-view"></div>
-    </div>
+    <div class="row no-gutters" id="output-view"></div>
     <script src="assets/javascript/app.js"></script>
   </body>
 </html>
