@@ -7,3 +7,5 @@ A user inputs a tv show to add new buttons to the page. To add gifs to page the 
 Upon returning to the site they're favorites will be stored and returned to the page.
 
 The user also has an option the add movie info to the page by selecting to make movie buttons before the input text section. It acts the same as the tv gifs except the user cannot store the movies in the favorites section, they have to search for the movies new each time they visit the site.
+
+The app also responds to weather or not the user has their computer set on light mode or not.
