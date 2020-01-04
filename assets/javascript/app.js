@@ -12,7 +12,7 @@ $("#add-button").on("click", function(event) {
     .toLowerCase()
     .trim();
   if ($("input[name=movie]:checked").val() && $("input[name=gif]:checked").val()) {
-    alert("Please check one choice at a time");
+    alert("Please check one choice at a time.");
   } else if ($("input[name=gif]:checked").val()) {
     tvShows.push(input);
   } else if ($("input[name=movie]:checked").val()) {
