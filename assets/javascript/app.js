@@ -70,7 +70,7 @@ function displayGIFs() {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
                   <div class="col">
-                  <video class="gif" loop="loop">
+                  <video class="gif" loop="loop" data-id="${response.data[randomGIF].id}">
                   <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
                   Your browser does not support this GIF.
                   </video>
@@ -117,16 +117,26 @@ function playPauseGif() {
 }
 
 // shows the favorites area then clones selected gif to the favorites area
-function addToFavorites() {
+function addToFavorites(event) {
+  event.preventDefault();
   $("#favorites").show();
-  $("#favorites").append($(this).clone());
 
-  // create an object to push to favorites array
-  var element = {};
-  element.src = $(this)
-    .find("source")
-    .attr("src");
-  favorites.push(element);
+  for (var i = 0; i < favorites.length; i++) {
+    var dataID = favorites[i].id;
+  }
+
+  if ($(this).attr("data-id") === dataID) {
+    return null;
+  } else {
+    $("#favorites").append($(this).clone());
+    // create an object to push to favorites array
+    var element = {};
+    element.src = $(this)
+      .find("source")
+      .attr("src");
+    element.id = $(this).attr("data-id");
+    favorites.push(element);
+  }
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
@@ -135,7 +145,7 @@ function addToFavorites() {
 $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", "#movie-btn", displayMovieInfo);
 $(document).on("click", ".gif", playPauseGif);
-$(document).on("contextmenu", ".gif", addToFavorites);
+$(document).on("contextmenu", "#output-view .gif", addToFavorites);
 $(document).ready(function() {
   // when there is nothing in local storage hide the favorites area
   if (localStorage.getItem("favorites") == null) {
@@ -146,7 +156,7 @@ $(document).ready(function() {
 
     for (var a = 0; a < favorites.length; a++) {
       var videoTag = `
-      <video class="gif" loop="loop">
+      <video class="gif" loop="loop" data-id="${favorites[a].id}">
       <source src="${favorites[a].src}" type="video/mp4">
       Your browser does not support this GIF.
       </video>
