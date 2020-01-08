@@ -151,16 +151,16 @@ $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", "#movie-btn", displayMovieInfo);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", "#output-view .gif", addToFavorites);
-var longpress = 1500;
+var longpress = 500;
 var start;
-$(document).on("mousedown", "#ouput-view .gif", function() {
+$(document).on("mousedown", ".gif", function() {
   start = new Date().getTime();
   console.log(start);
 });
-$(document).on("mouseleave", "#ouput-view .gif", function() {
+$(document).on("mouseleave", ".gif", function() {
   start = 0;
 });
-$(document).on("mouseup", "#ouput-view .gif", function() {
+$(document).on("mouseup", ".gif", function() {
   if (new Date().getTime() >= start + longpress) {
     $("#favorites").show();
 
