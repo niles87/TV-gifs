@@ -69,11 +69,13 @@ function displayGIFs() {
     for (var q = 0; q < 10; q++) {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
-                  <div class="col">
-                  <video class="gif" loop="loop" data-id="${response.data[randomGIF].id}">
-                  <source src="${response.data[randomGIF].images.fixed_height.mp4}" type="video/mp4">
-                  Your browser does not support this GIF.
-                  </video>
+                  <div class="col pl-1">
+                  <img src="${response.data[randomGIF].images.fixed_height_still.url}" 
+                  class="gif" data-id="${response.data[randomGIF].id}"
+                   data-play="${response.data[randomGIF].images.fixed_height.url}" 
+                   data-pause="${response.data[randomGIF].images.fixed_height_still.url}"
+                   data-state="pause" alt="${response.data[randomGIF].title}"
+                   >
                   <p>Right click to add to favorites</p>
                   <p>Rating: ${response.data[randomGIF].rating}</p>
                   <p>Title: ${response.data[randomGIF].title}</p>
@@ -94,7 +96,7 @@ function displayMovieInfo() {
     method: "GET",
   }).then(function(response) {
     var movieDiv = `
-                    <div class="col">
+                    <div class="col pl-1">
                     <img src="${response.Poster}" class="mb-1">
                     <h2>${response.Title}</h2>
                     <p>Rating: ${response.Rated}</p>
@@ -108,11 +110,13 @@ function displayMovieInfo() {
 
 // creates the way to control the gif either play or pause
 function playPauseGif() {
-  var gif = $(this).get(0);
-  if (gif.paused) {
-    gif.play();
+  var gif = $(this).attr("data-state");
+  if (gif === "pause") {
+    $(this).attr("src", $(this).attr("data-play"));
+    $(this).attr("data-state", "play");
   } else {
-    gif.pause();
+    $(this).attr("src", $(this).attr("data-pause"));
+    $(this).attr("data-state", "pause");
   }
 }
 
@@ -131,10 +135,12 @@ function addToFavorites(event) {
     $("#favorites").append($(this).clone());
     // create an object to push to favorites array
     var element = {};
-    element.src = $(this)
-      .find("source")
-      .attr("src");
+    element.src = $(this).attr("src");
+    element.dataState = $(this).attr("data-state");
+    element.dataPause = $(this).attr("data-pause");
+    element.dataPlay = $(this).attr("data-play");
     element.id = $(this).attr("data-id");
+    element.alt = $(this).attr("alt");
     favorites.push(element);
   }
 
@@ -156,10 +162,9 @@ $(document).ready(function() {
 
     for (var a = 0; a < favorites.length; a++) {
       var videoTag = `
-      <video class="gif" loop="loop" data-id="${favorites[a].id}">
-      <source src="${favorites[a].src}" type="video/mp4">
-      Your browser does not support this GIF.
-      </video>
+      <img class="gif" src="${favorites[a].src}" data-id="${favorites[a].id}"
+      data-state="${favorites[a].dataState}" data-play="${favorites[a].dataPlay}" 
+      data-pause="${favorites[a].dataPause}" alt="${favorites[a].alt}">
       `;
       $("#favorites").append(videoTag);
     }
