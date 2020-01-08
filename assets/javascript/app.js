@@ -75,7 +75,6 @@ function displayGIFs() {
                    data-play="${response.data[randomGIF].images.fixed_height.url}" 
                    data-pause="${response.data[randomGIF].images.fixed_height_still.url}"
                    data-state="pause" alt="${response.data[randomGIF].title}">
-                  <p>Right click to add to favorites</p>
                   <p>Rating: ${response.data[randomGIF].rating}</p>
                   <p>Title: ${response.data[randomGIF].title}</p>
                   </div>
@@ -151,41 +150,6 @@ $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", "#movie-btn", displayMovieInfo);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", "#output-view .gif", addToFavorites);
-var longpress = 250;
-var start;
-$(document).on("mousedown", ".gif", function() {
-  start = new Date().getTime();
-  console.log(start);
-});
-$(document).on("mouseleave", ".gif", function() {
-  start = 0;
-});
-$(document).on("mouseup", ".gif", function() {
-  if (new Date().getTime() >= start + longpress) {
-    $("#favorites").show();
-
-    for (var i = 0; i < favorites.length; i++) {
-      var dataID = favorites[i].id;
-    }
-
-    if ($(this).attr("data-id") === dataID) {
-      return null;
-    } else {
-      $("#favorites").append($(this).clone());
-      // create an object to push to favorites array
-      var element = {};
-      element.src = $(this).attr("src");
-      element.dataState = $(this).attr("data-state");
-      element.dataPause = $(this).attr("data-pause");
-      element.dataPlay = $(this).attr("data-play");
-      element.id = $(this).attr("data-id");
-      element.alt = $(this).attr("alt");
-      favorites.push(element);
-    }
-
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }
-});
 $(document).ready(function() {
   // when there is nothing in local storage hide the favorites area
   if (localStorage.getItem("favorites") == null) {
