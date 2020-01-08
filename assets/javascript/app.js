@@ -74,8 +74,7 @@ function displayGIFs() {
                   class="gif" data-id="${response.data[randomGIF].id}"
                    data-play="${response.data[randomGIF].images.fixed_height.url}" 
                    data-pause="${response.data[randomGIF].images.fixed_height_still.url}"
-                   data-state="pause" alt="${response.data[randomGIF].title}"
-                   >
+                   data-state="pause" alt="${response.data[randomGIF].title}">
                   <p>Right click to add to favorites</p>
                   <p>Rating: ${response.data[randomGIF].rating}</p>
                   <p>Title: ${response.data[randomGIF].title}</p>
