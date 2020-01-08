@@ -151,7 +151,7 @@ $(document).on("click", "#tvshow-btn", displayGIFs);
 $(document).on("click", "#movie-btn", displayMovieInfo);
 $(document).on("click", ".gif", playPauseGif);
 $(document).on("contextmenu", "#output-view .gif", addToFavorites);
-var longpress = 500;
+var longpress = 250;
 var start;
 $(document).on("mousedown", ".gif", function() {
   start = new Date().getTime();
@@ -184,8 +184,6 @@ $(document).on("mouseup", ".gif", function() {
     }
 
     localStorage.setItem("favorites", JSON.stringify(favorites));
-  } else {
-    alert("too short");
   }
 });
 $(document).ready(function() {
