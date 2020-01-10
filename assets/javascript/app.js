@@ -69,14 +69,14 @@ function displayGIFs() {
     for (var q = 0; q < 10; q++) {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
-                  <div class="col pl-1">
+                  <div class="col col-s12 pl-1 mb-1">
                   <img src="${response.data[randomGIF].images.fixed_height_still.url}" 
                    class="gif" data-id="${response.data[randomGIF].id}"
                    data-play="${response.data[randomGIF].images.fixed_height.url}" 
                    data-pause="${response.data[randomGIF].images.fixed_height_still.url}"
                    data-state="pause" alt="${response.data[randomGIF].title}">
-                  <p>Rating: ${response.data[randomGIF].rating}</p>
-                  <p>Title: ${response.data[randomGIF].title}</p>
+                   <p>Title: ${response.data[randomGIF].title}</p>
+                   <p>Rating: ${response.data[randomGIF].rating}</p>
                   </div>
                 `;
       $("#output-view").prepend(gifDiv);
@@ -94,12 +94,12 @@ function displayMovieInfo() {
     method: "GET",
   }).then(function(response) {
     var movieDiv = `
-                    <div class="col pl-1">
+                    <div class="col pl-1">                   
                     <img src="${response.Poster}" class="mb-1">
                     <h2>${response.Title}</h2>
                     <p>Rating: ${response.Rated}</p>
                     <p>Released: ${response.Released}</p>
-                    <p>${response.Plot}</p>
+                    <p>${response.Plot}</p>                   
                     </div>
                   `;
     $("#output-view").prepend(movieDiv);
@@ -131,6 +131,7 @@ function addToFavorites(event) {
     return null;
   } else {
     $("#favorites").append($(this).clone());
+
     // create an object to push to favorites array
     var element = {};
     element.src = $(this).attr("src");
@@ -159,12 +160,12 @@ $(document).ready(function() {
     favorites = JSON.parse(localStorage.getItem("favorites"));
 
     for (var a = 0; a < favorites.length; a++) {
-      var videoTag = `
+      var imgTag = `
       <img class="gif" src="${favorites[a].src}" data-id="${favorites[a].id}"
       data-state="${favorites[a].dataState}" data-play="${favorites[a].dataPlay}" 
       data-pause="${favorites[a].dataPause}" alt="${favorites[a].alt}">
       `;
-      $("#favorites").append(videoTag);
+      $("#favorites").append(imgTag);
     }
   }
 });
