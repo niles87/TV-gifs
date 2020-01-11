@@ -1,4 +1,3 @@
-import { giphyAPIK, omdbAPIK } from "./keys.js";
 // initial variables
 var tvShows = ["the office", "30 rock", "american horror story", "game of thrones"];
 var movies = ["30 days of night", "constantine", "tron:legacy", "All dogs go to heaven"];
@@ -58,7 +57,10 @@ function createButtons() {
 // API call to giphy using pressed button then adds it to the HTML document
 function displayGIFs() {
   var show = $(this).attr("data-name");
-  var queryURL = giphyAPIK + show + "&limit=100&offset=0&rating=&lang=en";
+  var queryURL =
+    "https://api.giphy.com/v1/gifs/search?api_key=XL0cvri4mdJxFaANOrpJHxQ6v0hiBPkp&q=" +
+    show +
+    "&limit=100&offset=0&rating=&lang=en";
 
   $.ajax({
     url: queryURL,
@@ -85,7 +87,7 @@ function displayGIFs() {
 // API call to OMDB using pressed button then adds it to the HTML document
 function displayMovieInfo() {
   var movie = $(this).attr("data-name");
-  var queryURL = "https://www.omdbapi.com/?t=" + movie + omdbAPIK;
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=db4dc94c";
 
   $.ajax({
     url: queryURL,
