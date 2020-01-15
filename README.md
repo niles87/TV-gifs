@@ -8,4 +8,4 @@ Upon returning to the site they're favorites will be stored and returned to the 
 
 The user also has an option the add movie info to the page by selecting to make movie buttons before the input text section. It acts the same as the tv gifs except the user cannot store the movies in the favorites section, they have to search for the movies new each time they visit the site.
 
-The app also responds to weather or not the user has their computer set on light mode or not.
+The app also responds to whether or not the user has their computer set on light mode or not.
