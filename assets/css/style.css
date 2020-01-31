@@ -3,6 +3,10 @@ body {
   color: #ffffff;
 }
 
+button {
+  border-radius: 5px;
+}
+
 #favorites {
   margin-top: 1%;
 }
