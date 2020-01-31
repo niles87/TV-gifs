@@ -69,7 +69,7 @@ function displayGIFs() {
     for (var q = 0; q < 10; q++) {
       var randomGIF = Math.floor(Math.random() * 100);
       var gifDiv = `
-                  <div class="col col-s12 pl-1 mb-1">
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-4 pl-1 mb-1">
                   <img src="${response.data[randomGIF].images.fixed_height_still.url}" 
                    class="gif" data-id="${response.data[randomGIF].id}"
                    data-play="${response.data[randomGIF].images.fixed_height.url}" 
@@ -94,7 +94,7 @@ function displayMovieInfo() {
     method: "GET",
   }).then(function(response) {
     var movieDiv = `
-                    <div class="col pl-1">                   
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 pl-1">                   
                     <img src="${response.Poster}" class="mb-1">
                     <h2>${response.Title}</h2>
                     <p>Rating: ${response.Rated}</p>
