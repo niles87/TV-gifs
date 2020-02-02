@@ -1,5 +1,17 @@
 # TV-gifs
 
+#### Adding Gifs
+
+![]("assets/images/add-gif.gif")
+
+#### Adding Movies
+
+![]("assets/images/add-movie.gif")
+
+#### Add Gif to Favorites
+
+![]("assets/images/add-favs.gif")
+
 ## Overview
 
 A user inputs a tv show to add new buttons to the page. To add gifs to page the user then has to click one of the prestored or created buttons. Using the giphy API the data-name of the button pressed sends a query url to append 10 random gifs from the query onto the page. If the user likes a gif they can add it to their favorites by right clicking.
