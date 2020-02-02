@@ -2,15 +2,15 @@
 
 #### Adding Gifs
 
-![]("assets/images/add-gif.gif")
+<img src="assets/images/add-gif.gif">
 
 #### Adding Movies
 
-![]("assets/images/add-movie.gif")
+<img src="assets/images/add-movie.gif">
 
 #### Add Gif to Favorites
 
-![]("assets/images/add-favs.gif")
+<img src="assets/images/add-favs.gif">
 
 ## Overview
 
