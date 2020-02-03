@@ -19,6 +19,7 @@ $("#add-button").on("click", function(event) {
     movies.push(input);
   }
 
+  $("#button-input").val("");
   createButtons();
 });
 
