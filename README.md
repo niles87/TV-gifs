@@ -1,16 +1,16 @@
-# TV-gifs
+# <p align='center'>TV-gifs</p>
 
 #### Adding Gifs
 
-<img src="assets/images/add-gif.gif">
+<p align='center'><img src="assets/images/add-gif.gif"></p>
 
 #### Adding Movies
 
-<img src="assets/images/add-movie.gif">
+<p align='center'><img src="assets/images/add-movie.gif"></p>
 
 #### Add Gif to Favorites
 
-<img src="assets/images/add-favs.gif">
+<p align='center'><img src="assets/images/add-favs.gif"></p>
 
 ## Overview
 
